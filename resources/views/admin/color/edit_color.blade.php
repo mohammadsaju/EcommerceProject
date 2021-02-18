@@ -1,33 +1,33 @@
 @extends('layouts.admin_master')
-@section('title')
-    size add
-@endsection
-@section('size')
+@section('color')
     active
+@endsection
+@section('title')
+    Edit size
 @endsection
 @section('admin_content')
 <div class="row">
     <div class="col-md-12">
-        <h3 class="mb-3"  style="color: #808080;">Manage size</h3>
-        <a href="{{ route('size') }}" class="btn btn-success">Back</a>
+        <h3 class="mb-3"  style="color: #808080;">Edit color</h3>
+        <a href="{{ route('add.coupon') }}" class="btn btn-success">Add color</a>
     </div>
 </div>
 <div class="row mt-3">
     <div class="col-lg-8">
         <div class="card">
-            <div class="card-header">Add your size</div>
+            <div class="card-header">Edit your color</div>
             <div class="card-body">
                 <hr>
-                <form action="{{ route('insert.size') }}" method="POST" novalidate="novalidate">
+                <form action="{{ url('update/color/'.$color->id) }}" method="POST" novalidate="novalidate">
                     @csrf
                     <div class="form-group">
                         <label for="cc-payment" class="control-label mb-1">size Name</label>
-                        <input id="cc-pament" name="size" type="text" class="form-control" required>
-                        <span class="text-danger">@error('size'){{ $message }} @enderror</span>
+                        <input id="cc-pament" name="color_name" type="text" class="form-control" required value="{{ $color->color_name }}">
+                        <span class="text-danger">@error('color_name'){{ $message }} @enderror</span>
                     </div>
                     <div>
                         <button id="payment-button" type="submit" class="btn btn-info">
-                          Add size
+                          update color
                         </button>
                     </div>
                 </form>

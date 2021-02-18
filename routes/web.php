@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\brandController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\colorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\sizeController;
 use Illuminate\Support\Facades\Auth;
@@ -63,3 +65,24 @@ route::post('update/size/{id}',[sizeController::class,'updateSize']);
 route::get('delete/size/{id}',[sizeController::class,'deleteSize']);
 route::get('inactive/size/{id}',[sizeController::class,'inactiveSize']);
 route::get('active/size/{id}',[sizeController::class,'activeSize']);
+
+//==========COLOR==========//
+route::get('color',[colorController::class,'index'])->name('color');
+route::get('add/color',[colorController::class,'addColor'])->name('add.color');
+route::post('insert/color',[colorController::class,'insertColor'])->name('insert.color');
+route::get('edit/color/{id}',[colorController::class,'editColor']);
+route::post('update/color/{id}',[colorController::class,'updateColor']);
+route::get('delete/color/{id}',[colorController::class,'deleteColor']);
+route::get('inactive/color/{id}',[colorController::class,'inactiveColor']);
+route::get('active/color/{id}',[colorController::class,'activeColor']);
+
+// //==========BRAND==========//
+// route::get('brand',[brandController::class,'index'])->name('brand');
+// route::get('add/brand',[brandController::class,'addBrand'])->name('add.brand');
+// route::post('insert/brand',[brandController::class,'insertBrand'])->name('insert.brand');
+// route::get('edit/brand/{id}',[brandController::class,'editBrand']);
+// route::post('update/brand/{id}',[brandController::class,'updateBrand']);
+// route::get('delete/brand/{id}',[brandController::class,'deleteBrand']);
+// route::get('inactive/brand/{id}',[brandController::class,'inactiveBrand']);
+// route::get('active/brand/{id}',[brandController::class,'activeBrand']);
+

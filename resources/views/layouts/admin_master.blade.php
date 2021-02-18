@@ -174,6 +174,10 @@
                             <a href="{{ route('category') }}">
                                 <i class="fab fa-grunt"></i>Category</a>
                         </li>
+                        {{-- <li class="@yield('brand')">
+                            <a href="{{ route('brand') }}">
+                                <i class="fab fa-grunt"></i>brand</a>
+                        </li> --}}
                         <li class="@yield('coupon')">
                             <a href="{{ route('coupon') }}">
                                 <i class="fab fa-cuttlefish"></i>Coupon</a>
@@ -181,6 +185,10 @@
                         <li class="@yield('size')">
                             <a href="{{ route('size') }}">
                                 <i class="fab fa-cuttlefish"></i>Size</a>
+                        </li>
+                        <li class="@yield('color')">
+                            <a href="{{ route('color') }}">
+                                <i class="fab fa-cuttlefish"></i>color</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">

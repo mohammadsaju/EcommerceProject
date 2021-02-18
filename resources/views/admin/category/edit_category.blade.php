@@ -2,6 +2,9 @@
 @section('title')
     Edit Category
 @endsection
+@section('category')
+    active
+@endsection
 @section('admin_content')
 <div class="row">
     <div class="col-md-12">

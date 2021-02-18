@@ -2,6 +2,9 @@
 @section('title')
     Edit coupon
 @endsection
+@section('coupon')
+    active
+@endsection
 @section('admin_content')
 <div class="row">
     <div class="col-md-12">

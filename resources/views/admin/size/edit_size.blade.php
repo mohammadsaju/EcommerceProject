@@ -2,6 +2,9 @@
 @section('title')
     Edit size
 @endsection
+@section('size')
+    active
+@endsection
 @section('admin_content')
 <div class="row">
     <div class="col-md-12">
