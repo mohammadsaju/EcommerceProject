@@ -174,36 +174,29 @@
                             <a href="{{ route('category') }}">
                                 <i class="fab fa-grunt"></i>Category</a>
                         </li>
-                        {{-- <li class="@yield('brand')">
+                        <li class="@yield('brand')">
                             <a href="{{ route('brand') }}">
-                                <i class="fab fa-grunt"></i>brand</a>
-                        </li> --}}
+                                <i class="fab fa-btc"></i>brand</a>
+                        </li>
+                        <li class="@yield('product')">
+                            <a href="{{ route('product') }}">
+                                <i class="fab fa-product-hunt"></i>product</a>
+                        </li>
                         <li class="@yield('coupon')">
                             <a href="{{ route('coupon') }}">
                                 <i class="fab fa-cuttlefish"></i>Coupon</a>
                         </li>
                         <li class="@yield('size')">
                             <a href="{{ route('size') }}">
-                                <i class="fab fa-cuttlefish"></i>Size</a>
+                                <i class="fab fa-stripe-s"></i>Size</a>
                         </li>
                         <li class="@yield('color')">
                             <a href="{{ route('color') }}">
-                                <i class="fab fa-cuttlefish"></i>color</a>
+                                <i class="fas fa-paint-brush"></i>color</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
+                        <li class="@yield('customer')">
+                            <a href="{{ route('customer') }}">
+                                <i class="fas fa-people-arrows"></i>customer</a>
                         </li>
                     </ul>
                 </nav>

@@ -5,6 +5,8 @@ use App\Http\Controllers\brandController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\colorController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\customerController;
+use App\Http\Controllers\productController;
 use App\Http\Controllers\sizeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -76,13 +78,29 @@ route::get('delete/color/{id}',[colorController::class,'deleteColor']);
 route::get('inactive/color/{id}',[colorController::class,'inactiveColor']);
 route::get('active/color/{id}',[colorController::class,'activeColor']);
 
-// //==========BRAND==========//
-// route::get('brand',[brandController::class,'index'])->name('brand');
-// route::get('add/brand',[brandController::class,'addBrand'])->name('add.brand');
-// route::post('insert/brand',[brandController::class,'insertBrand'])->name('insert.brand');
-// route::get('edit/brand/{id}',[brandController::class,'editBrand']);
-// route::post('update/brand/{id}',[brandController::class,'updateBrand']);
-// route::get('delete/brand/{id}',[brandController::class,'deleteBrand']);
-// route::get('inactive/brand/{id}',[brandController::class,'inactiveBrand']);
-// route::get('active/brand/{id}',[brandController::class,'activeBrand']);
+//==========BRAND==========//
+route::get('brand',[brandController::class,'index'])->name('brand');
+route::get('add/brand',[brandController::class,'addBrand'])->name('add.brand');
+route::post('insert/brand',[brandController::class,'insertBrand'])->name('insert.brand');
+route::get('edit/brand/{id}',[brandController::class,'editBrand']);
+route::post('update/brand/{id}',[brandController::class,'updateBrand']);
+route::get('delete/brand/{id}',[brandController::class,'deleteBrand']);
+route::get('inactive/brand/{id}',[brandController::class,'inactiveBrand']);
+route::get('active/brand/{id}',[brandController::class,'activeBrand']);
+
+//===========PRODUCT===========//
+route::get('product',[productController::class,'index'])->name('product');
+route::get('show/product',[productController::class,'showProduct'])->name('show.product');
+route::post('insert/product',[productController::class,'insertProduct'])->name('insert.product');
+route::get('edit/product/{id}',[productController::class,'editProduct']);
+route::post('update/product/content/{id}',[productController::class,'updateProduct']);
+route::get('delete/product/{id}',[productController::class,'deleteProduct']);
+route::get('inactive/product/{id}',[productController::class,'inactiveProduct']);
+route::get('active/product/{id}',[productController::class,'activeProduct']);
+
+//===========CUSTOMER===========//
+route::get('customer',[customerController::class,'index'])->name('customer');
+route::get('view/customer/{id}',[customerController::class,'viewCustomer']);
+route::get('inactive/customer/{id}',[customerController::class,'inactiveCustomer']);
+route::get('active/customer/{id}',[customerController::class,'activeCustomer']);
 
