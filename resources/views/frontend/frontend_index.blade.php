@@ -86,36 +86,40 @@
               <div class="aa-product-inner">
                 <!-- start prduct navigation -->
                  <ul class="nav nav-tabs aa-products-tab">
-                    <li class="active"><a href="#men" data-toggle="tab">Men</a></li>
-                    <li><a href="#women" data-toggle="tab">Women</a></li>
-                    <li><a href="#sports" data-toggle="tab">Sports</a></li>
-                    <li><a href="#electronics" data-toggle="tab">Electronics</a></li>
+                   @foreach ($categories as $item)
+                   <li class=""><a href="#{{ $item->id }}" data-toggle="tab">{{ $item->category_name }}</a></li>
+                   @endforeach
                   </ul>
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <!-- Start men product category -->
-                    <div class="tab-pane fade in active" id="men">
-                      <ul class="aa-product-catg">
-                        <!-- start single product item -->
-                        <li>
-                          <figure>
-                            <a class="aa-product-img" href="#"><img src="{{ asset('frontend') }}/img/man/polo-shirt-2.png" alt="polo shirt img"></a>
-                            <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <figcaption>
-                              <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
-                              <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
-                            </figcaption>
-                          </figure>                        
-                          <div class="aa-product-hvr-content">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                            <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
-                          </div>
-                          <!-- product badge -->
-                          <span class="aa-badge aa-sale" href="#">SALE!</span>
-                        </li>
-                      </ul>
-                    </div>
+                    @foreach ($categories as $item)
+                      @php
+                      $productss = App\Models\product::where('category_id',$item->id)->latest()->get();
+                     @endphp
+                     @foreach ($productss as $pro)
+                   <div class="tab-pane fade in active" id="{{ $item->id }}">
+                    <ul class="aa-product-catg">
+                      <!-- start single product item -->
+                      <li>
+                        <figure>
+                          <a class="aa-product-img" href="#"><img src="{{ asset($pro->image_one) }}" alt="polo shirt img"></a>
+                          <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            <figcaption>
+                            <h4 class="aa-product-title"><a href="#">{{ $pro->product_name }}</a></h4>
+                            <span class="aa-product-price">${{ $pro->product_price }}</span></span>
+                          </figcaption>
+                        </figure>                        
+                        <div class="aa-product-hvr-content">
+                          <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                          <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
+                          <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                          
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  @endforeach
+                      @endforeach
                     <!-- / men product category -->
                     <!-- start women product category -->
                     <div class="tab-pane fade" id="women">
@@ -123,7 +127,7 @@
                         <!-- start single product item -->
                         <li>
                           <figure>
-                            <a class="aa-product-img" href="#"><img src="{{ asset('frontend') }}/img/women/girl-1.png" alt="polo shirt img"></a>
+                            <a class="aa-product-img" href="#"><img src="{{ asset('frontend') }}/img/women/ban.jpg"></a>
                             <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                             <figcaption>
                               <h4 class="aa-product-title"><a href="#">This is Title</a></h4>
@@ -286,7 +290,7 @@
         <div class="col-md-12">        
           <div class="row">
             <div class="aa-banner-area">
-            <a href="#"><img src="{{ asset('frontend') }}/img/fashion-banner.jpg" alt="fashion banner img"></a>
+            <a href="#"><img src="{{ asset('frontend') }}/img/women/ban.jpg" alt="fashion banner img"></a>
           </div>
           </div>
         </div>

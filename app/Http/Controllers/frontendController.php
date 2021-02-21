@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\brand;
 use App\Models\category;
 use App\Models\homeBanner;
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class frontendController extends Controller
