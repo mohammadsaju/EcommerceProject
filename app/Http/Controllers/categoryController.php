@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Image;
 
 class categoryController extends Controller
 {
@@ -24,11 +25,18 @@ class categoryController extends Controller
     public function insertCategory(Request $request){
          $request->validate([
              'category_name' => 'required',
-             'category_slug' => 'required | unique:categories',
+             'category_image' => 'required | mimes: jpg,jpeg,png,gif',
          ]);
+
+         $img_one = $request->file('category_image');
+         $name_gen = hexdec(uniqid()) . '.' . $img_one->getClientOriginalExtension();
+         Image::make($img_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+         $image_url_one = 'backend/images/products/' . $name_gen;
+
          category::insert([
              'category_name'  => $request->category_name,
-             'category_slug'  => $request->category_slug,
+             'category_slug'  => strtolower(str_replace('', '-', $request->category_name)),
+             'category_image' => $image_url_one,
              'created_at'     => Carbon::now(),
          ]);
          return redirect()->route('category')->with('success','category inserted successfully!');
@@ -41,16 +49,24 @@ class categoryController extends Controller
     }
     public function updateCategory(Request $request,$id){
         $request->validate([
-            'category_name' => 'required',
-            'category_slug' => 'required | unique:categories',
+            'category_name' => 'required'
         ]);
 
-       $data = category::find($id);
-       $data->category_name = $request->category_name;
-       $data->category_slug = $request->category_slug;
-       $data->updated_at    = Carbon::now();
-       $data->save();
-       return redirect()->route('category')->with('success','category updated successfully!');
+        $old_one = $request->old_image;
+        if($request->has('category_image')){
+            unlink($old_one);
+            $img_one = $request->file('category_image');
+            $name_gen = hexdec(uniqid()) . '.' . $img_one->getClientOriginalExtension();
+            Image::make($img_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $image_url_one = 'backend/images/products/' . $name_gen;
+
+            $data = category::find($id);
+            $data->category_name = $request->category_name;
+            $data->category_image= $image_url_one;
+            $data->save();
+            return redirect()->route('category')->with('success','brand updated successfully');
+        }
+      
     }
     //==============delete category-==============//
     public function deleteCategory($id){

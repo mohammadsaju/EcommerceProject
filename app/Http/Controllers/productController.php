@@ -106,6 +106,181 @@ class productController extends Controller
         return redirect()->route('show.product')->with('success','product updated successfully');
     }
 
+    //==============UPDATE IMAGE=================//
+    
+    public function updateImage(Request $request,$id){
+        $old_one   = $request->img_one;
+        $old_two   = $request->img_two;
+        $old_three = $request->img_three;
+
+        //===========image one and two and three=========//
+if($request->has('image_one') && $request->has('image_two') && $request->has('image_three')){
+    unlink($old_one);
+    unlink($old_two);
+    unlink($old_three);
+
+    $imag_one = $request->file('image_one');
+    $name_gen = hexdec(uniqid()) . '.' . $imag_one->getClientOriginalExtension();
+    Image::make($imag_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+    $imag_url_one = 'backend/images/products/' . $name_gen;
+
+    $data = product::find($id);
+    $data->image_one = $imag_url_one;
+    $data->updated_at= Carbon::now();
+    $data->save();
+
+    $imag_two = $request->file('image_two');
+    $name_gen = hexdec(uniqid()) . '.' . $imag_two->getClientOriginalExtension();
+    Image::make($imag_two)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+    $imag_url_two = 'backend/images/products/' . $name_gen;
+
+    $data = product::find($id);
+    $data->image_two = $imag_url_two;
+    $data->updated_at= Carbon::now();
+    $data->save();
+
+    $imag_three = $request->file('image_three');
+    $name_gen = hexdec(uniqid()) . '.' . $imag_three->getClientOriginalExtension();
+    Image::make($imag_three)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+    $imag_url_three = 'backend/images/products/' . $name_gen;
+
+    $data = product::find($id);
+    $data->image_three = $imag_url_three;
+    $data->updated_at= Carbon::now();
+    $data->save();
+    
+    return redirect()->route('show.product')->with('success','images has been updated');
+}
+
+//===========image one and two=========//
+        if($request->has('image_one') && $request->has('image_two')){
+            unlink($old_one);
+            unlink($old_two);
+
+            $imag_one = $request->file('image_one');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_one = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_one = $imag_url_one;
+            $data->updated_at= Carbon::now();
+            $data->save();
+
+            $imag_two = $request->file('image_two');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_two = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_two = $imag_url_two;
+            $data->updated_at= Carbon::now();
+            $data->save();
+            
+            return redirect()->route('show.product')->with('success','image one and two is updated');
+        }
+
+//===========image one and three=========//
+        if($request->has('image_one') && $request->has('image_three')){
+            unlink($old_one);
+            unlink($old_three);
+
+            $imag_one = $request->file('image_one');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_one = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_one = $imag_url_one;
+            $data->updated_at= Carbon::now();
+            $data->save();
+
+            $imag_three = $request->file('image_three');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_three = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_three = $imag_url_three;
+            $data->updated_at= Carbon::now();
+            $data->save();
+
+            return redirect()->route('show.product')->with('success','image one and three is updated');
+        }
+
+//===========image two and three=========//
+        if($request->has('image_two') && $request->has('image_three')){
+            unlink($old_two);
+            unlink($old_three);
+
+            $imag_two = $request->file('image_two');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_two = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_two = $imag_url_two;
+            $data->updated_at= Carbon::now();
+            $data->save();
+
+            $imag_three = $request->file('image_three');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_three = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_three = $imag_url_three;
+            $data->updated_at= Carbon::now();
+            $data->save();
+
+            return redirect()->route('show.product')->with('success','image two and three is updated');
+        }
+
+//===========image one=========//
+        if($request->has('image_one')){
+            unlink($old_one);
+            $imag_one = $request->file('image_one');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_one->getClientOriginalExtension();
+            Image::make($imag_one)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_one = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_one = $imag_url_one;
+            $data->updated_at= Carbon::now();
+            $data->save();
+            return redirect()->route('show.product')->with('success','the products image one is updated');
+        }
+//=========image two==========//
+        if($request->has('image_two')){
+            unlink($old_two);
+            $imag_two = $request->file('image_two');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_two->getClientOriginalExtension();
+            Image::make($imag_two)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_two = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_two = $imag_url_two;
+            $data->updated_at= Carbon::now();
+            $data->save();
+            return redirect()->route('show.product')->with('success','the products image two is updated');
+        }
+//==========image three============//
+        if($request->has('image_three')){
+            unlink($old_three);
+            $imag_three = $request->file('image_three');
+            $name_gen = hexdec(uniqid()) . '.' . $imag_three->getClientOriginalExtension();
+            Image::make($imag_three)->resize(270, 250)->save('backend/images/products/' . $name_gen);
+            $imag_url_three = 'backend/images/products/' . $name_gen;
+
+            $data = product::find($id);
+            $data->image_three = $imag_url_three;
+            $data->updated_at= Carbon::now();
+            $data->save();
+            return redirect()->route('show.product')->with('success','the products image three is updated');
+        }
+        
+    }
+
     //==============delete product-==============//
     public function deleteProduct($id){
         $delete = product::find($id);

@@ -46,6 +46,7 @@
                                             <th>Sl:</th>
                                             <th>category_name</th>
                                             <th>category_slug</th>
+                                            <th>category_image</th>
                                             <th>Status</th>
                                             <th>action</th>
                                         </tr>
@@ -56,6 +57,9 @@
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->category_name }}</td>
                                             <td>{{ $category->category_slug }}</td>
+                                            <td>
+                                                <img src="{{ asset($category->category_image) }}" style="height: 70px; width: 70px;" alt="">
+                                            </td>
                                             <td>
                                                 @if($category->category_status === 1)
                                                 <span class="badge badge-success">active</span>

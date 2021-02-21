@@ -170,6 +170,14 @@
                             <a class="js-arrow" href="{{ route('home') }}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
+                        <li class="@yield('banner')">
+                            <a class="js-arrow" href="{{ route('banner') }}">
+                                <i class="fas fa-tachometer-alt"></i>Banner</a>
+                        </li>
+                        <li>
+                            <a class="js-arrow" href="{{ url('/') }}">
+                                <i class="fas fa-tachometer-alt"></i>Visit site</a>
+                        </li>
                         <li class="@yield('category')">
                             <a href="{{ route('category') }}">
                                 <i class="fab fa-grunt"></i>Category</a>

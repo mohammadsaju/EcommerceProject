@@ -81,24 +81,41 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-8">
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="form-group has-success">
+    <div class="col-md-12">
+        <form action="{{ url('update/image/'.$product->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+
+            <input type="hidden" name="img_one" value="{{ $product->image_one }}">
+            <input type="hidden" name="img_two" value="{{ $product->image_two }}">
+            <input type="hidden" name="img_three" value="{{ $product->image_three }}">
+
+            <div class="form-group has-success" style="display: inline-block;">
                 <label for="cc-name" class="control-label mb-1">image one</label>
-                <input id="cc-name" name="image_one" type="file" class="form-control cc-name valid" required>
+                <input id="cc-name" name="image_one" type="file" class="cc-name valid">
                 <span class="text-danger">@error('image_one'){{ $message }} @enderror</span>
             </div>
-            <div class="form-group has-success">
+            <div class="form-group has-success" style="display: inline-block;">
                 <label for="cc-name" class="control-label mb-1">image two</label>
-                <input id="cc-name" name="image_two" type="file" class="form-control cc-name valid" required>
+                <input id="cc-name" name="image_two" type="file" class="cc-name valid">
                 <span class="text-danger">@error('image_two'){{ $message }} @enderror</span>
             </div>
-            <div class="form-group has-success">
+            <div class="form-group has-success" style="display: inline-block;">
                 <label for="cc-name" class="control-label mb-1">image three</label>
-                <input id="cc-name" name="image_three" type="file" class="form-control cc-name valid" required>
+                <input id="cc-name" name="image_three" type="file" class="cc-name valid">
                 <span class="text-danger">@error('image_three'){{ $message }} @enderror</span>
             </div>
-            <div>
+            <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{ asset($product->image_one) }}" style="height: 200px; width: 150px;" alt="">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{ asset($product->image_two) }}" style="height: 200px; width: 150px;" alt="">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{ asset($product->image_three) }}" style="height: 200px; width: 150px;" alt="">
+                    </div>
+            </div>
+            <div class="mt-3">
                 <button id="payment-button" type="submit" class="btn btn-info">
                   update image
                 </button>

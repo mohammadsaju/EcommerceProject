@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\bannerController;
 use App\Http\Controllers\brandController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\colorController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\frontendController;
 use App\Http\Controllers\productController;
 use App\Http\Controllers\sizeController;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+route::get('/',[frontendController::class,'index']);
 
 Auth::routes();
 
@@ -94,6 +98,7 @@ route::get('show/product',[productController::class,'showProduct'])->name('show.
 route::post('insert/product',[productController::class,'insertProduct'])->name('insert.product');
 route::get('edit/product/{id}',[productController::class,'editProduct']);
 route::post('update/product/content/{id}',[productController::class,'updateProduct']);
+route::post('update/image/{id}',[productController::class,'updateImage']);
 route::get('delete/product/{id}',[productController::class,'deleteProduct']);
 route::get('inactive/product/{id}',[productController::class,'inactiveProduct']);
 route::get('active/product/{id}',[productController::class,'activeProduct']);
@@ -104,3 +109,12 @@ route::get('view/customer/{id}',[customerController::class,'viewCustomer']);
 route::get('inactive/customer/{id}',[customerController::class,'inactiveCustomer']);
 route::get('active/customer/{id}',[customerController::class,'activeCustomer']);
 
+//=============BANNER==============//
+route::get('banner',[bannerController::class,'index'])->name('banner');
+route::get('add/banner',[bannerController::class,'addBanner'])->name('add.banner');
+route::post('insert/banner',[bannerController::class,'insertBanner'])->name('insert.banner');
+route::get('edit/banner/{id}',[bannerController::class,'editBanner']);
+route::post('update/banner/{id}',[bannerController::class,'updateBanner']);
+route::get('delete/banner/{id}',[bannerController::class,'deleteBanner']);
+route::get('inactive/banner/{id}',[bannerController::class,'inactiveBanner']);
+route::get('active/banner/{id}',[bannerController::class,'activeBanner']);

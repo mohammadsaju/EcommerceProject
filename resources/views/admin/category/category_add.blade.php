@@ -18,7 +18,7 @@
             <div class="card-header">Add your category</div>
             <div class="card-body">
                 <hr>
-                <form action="{{ route('insert.category') }}" method="POST" novalidate="novalidate">
+                <form action="{{ route('insert.category') }}" method="POST" novalidate="novalidate" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="cc-payment" class="control-label mb-1">Category Name</label>
@@ -26,9 +26,9 @@
                         <span class="text-danger">@error('category_name'){{ $message }} @enderror</span>
                     </div>
                     <div class="form-group has-success">
-                        <label for="cc-name" class="control-label mb-1">category slug</label>
-                        <input id="cc-name" name="category_slug" type="text" class="form-control cc-name valid" required>
-                        <span class="text-danger">@error('category_slug'){{ $message }} @enderror</span>
+                        <label for="cc-name" class="control-label mb-1">category image</label>
+                        <input id="cc-name" name="category_image" type="file" class="form-control cc-name valid">
+                        <span class="text-danger">@error('category_image'){{ $message }} @enderror</span>
                     </div>
                     <div>
                         <button id="payment-button" type="submit" class="btn btn-info">
